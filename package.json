@@ -2,9 +2,8 @@
   "name": "langchain-nextjs-template",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "yarn@3.5.1",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3003 --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
