@@ -4,6 +4,7 @@ import prisma from "@/libs/prisma";
 import { put } from "@vercel/blob";
 import { InvoiceProcessor } from "@/libs/invoice-processor";
 import { createStreamableValue } from "ai/rsc";
+import { extractTextFromPdf } from "@/libs/ai/tools/proces-invoice";
 
 const invoiceProcessor = new InvoiceProcessor();
 
@@ -91,7 +92,8 @@ export async function POST(req: NextRequest) {
                 filename.toLowerCase().endsWith('.png')) {
               try {
                 // Process the invoice
-                // await invoiceProcessor.processInvoice(blob.url);
+                const [rawText, error] = await extractTextFromPdf(blob.url);
+                console.log(rawText);
                 stream.update({ status: 'processing', file: filename });
               } catch (error: any) {
                 console.error("Error processing invoice:", error);

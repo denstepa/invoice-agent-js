@@ -24,5 +24,40 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "ts-node": {
+    // these options are overrides used only by ts-node
+    // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
+    "compilerOptions": {
+      "module": "commonjs",
+      "allowJs": true,
+      "skipLibCheck": true,
+      "strict": false,
+      "forceConsistentCasingInFileNames": true,
+      "noEmit": true,
+      "incremental": true,
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+  
+      // Add these type-checking options
+      "noUnusedLocals": true,          // Error on unused local variables
+      "noUnusedParameters": true,       // Error on unused parameters
+      "noFallthroughCasesInSwitch": true, // Error on switch case fallthrough
+      "exactOptionalPropertyTypes": true,  // More precise optional property types
+      
+  
+      // Additional safety
+      "noImplicitReturns": true,      // Ensure all code paths return in functions
+      "noImplicitOverride": true,     // Require explicit override keyword
+      "useUnknownInCatchVariables": true, // Use unknown instead of any in catch
+  
+      // Build and module improvements
+      "sourceMap": true,               // Enable source maps
+      "removeComments": true
+    }
+  },
 }
